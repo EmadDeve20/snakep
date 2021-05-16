@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# after creat project direttory all this commond is run
+
+# git project
+git init
+
+# vritualenv
+#virtualenv venv
+# Enter Your Commonds: 
