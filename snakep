@@ -1,6 +1,12 @@
 #!/bin/bash
 
 SAMPLE_PROJECT=~/.snakep
+SOURCE_COMMONDS=~/.snakep_commonds
+
 mkdir $1
 
 cp -r $SAMPLE_PROJECT/* $1
+
+cd $1
+bash $SOURCE_COMMONDS
+
