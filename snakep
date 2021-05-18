@@ -5,7 +5,11 @@ SOURCE_COMMONDS=~/.snakep_commonds
 
 mkdir $1
 
+# install all files or folders
 cp -r $SAMPLE_PROJECT/* $1
+# install all hiden files or folders
+cp $SAMPLE_PROJECT/.[a-zA-Z]* $1 && cp -r $SAMPLE_PROJECT/.[a-zA-Z]* $1
+
 
 cd $1
 bash $SOURCE_COMMONDS
