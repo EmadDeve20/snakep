@@ -4,7 +4,10 @@ if [ -s ~/.snakep ]
 then
 	rm -rf ~/.snakep
 fi
-cp -r .snakep ~
+
+mkdir ~/.snakep
+cp -r snake/* ~/.snakep
+cp -r snake/.gitignore ~/.snakep
 
 if [ -s ~/.snakep_commonds ]
 then
