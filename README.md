@@ -8,6 +8,12 @@ this is just for unix os. use this commond in the your terminal.
 
 ``` ./install.sh ```
 
+## usage
+
+this is too EZ.
+
+``` sankep <project-name>```
+
 ## customize
 
 you can add your files or folder in ``` ~/.snakep ``` directory.
