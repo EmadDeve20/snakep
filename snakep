@@ -1,34 +1,38 @@
 #!/bin/bash
 
 
-if [ $# = "0" ]
-then
-	echo -e "\n-h or --help for help\n"
-	exit
-fi
+HELPER(){
+	if [ $# = "0" ]
+	then
+		echo -e "\n-h or --help for help\n"
+		exit
+	fi
 
-if [ $1 = "--help" ]
-then
-	echo -e "\njust tell me your project name :D\n\nLIKE THIS: snakep test\n"
+	if [ $1 = "--help" ]
+	then
+		echo -e "\njust tell me your project name :D\n\nLIKE THIS: snakep test\n"
+		exit 0
+	elif [ $1 = "-h" ]
+	then
+		echo -e "\njust tell me your project name :D\n\nLIKE THIS: snakep test\n"
+		exit 0
+	fi
 	exit 0
-elif [ $1 = "-h" ]
-then
-	echo -e "\njust tell me your project name :D\n\nLIKE THIS: snakep test\n"
+}
+
+
+FOLDER_CREATOR(){
+	SAMPLE_PROJECT=~/.snakep
+	SOURCE_COMMONDS=~/.snakep_commonds
+	mkdir $1
+	# install all files or folders
+	cp -r $SAMPLE_PROJECT/* $1
+	# install all hiden files or folders
+	cp $SAMPLE_PROJECT/.[a-zA-Z0-9]* $1 && cp -r $SAMPLE_PROJECT/.[a-zA-Z0-9]* $1
+	cd $1
+	bash $SOURCE_COMMONDS
 	exit 0
-fi
+}
 
-
-SAMPLE_PROJECT=~/.snakep
-SOURCE_COMMONDS=~/.snakep_commonds
-
-mkdir $1
-
-# install all files or folders
-cp -r $SAMPLE_PROJECT/* $1
-# install all hiden files or folders
-cp $SAMPLE_PROJECT/.[a-zA-Z0-9]* $1 && cp -r $SAMPLE_PROJECT/.[a-zA-Z0-9]* $1
-
-
-cd $1
-bash $SOURCE_COMMONDS
-
+$FOLDER_CREATOR
+$HELPER
