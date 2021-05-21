@@ -8,6 +8,9 @@ fi
 mkdir ~/.snakep
 cp -r snake/* ~/.snakep
 cp -r snake/.gitignore ~/.snakep
+mv ~/.snakep/src/__init__.py.sample ~/.snakep/src/__init__.py
+mv ~/.snakep/test/__init__.py.sample ~/.snakep/test/__init__.py
+mv ~/.snakep/setup.py.sample ~/.snakep/setup.py
 
 if [ -s ~/.snakep_commonds ]
 then
