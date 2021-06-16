@@ -8,9 +8,6 @@ HELPER(){
 	else
 		echo -e "The $1 Exist!:\n\n`ls $1`"
 	fi
-
-
-	
 }
 
 
