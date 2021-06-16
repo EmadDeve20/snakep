@@ -2,37 +2,37 @@
 
 
 HELPER(){
-	if [ $# = "0" ]
+	if [[ "$1" = "--help" || "$1" = "-h" || "$#" = "0" ]]
 	then
-		echo -e "\n-h or --help for help\n"
-		exit
+		echo -e "\njust tell me your project name :D\n\nLIKE THIS: snakep test\n"	
+	else
+		echo -e "The $1 Exist!:\n\n`ls $1`"
 	fi
-
-	if [ $1 = "--help" ]
-	then
-		echo -e "\njust tell me your project name :D\n\nLIKE THIS: snakep test\n"
-		exit 0
-	elif [ $1 = "-h" ]
-	then
-		echo -e "\njust tell me your project name :D\n\nLIKE THIS: snakep test\n"
-		exit 0
-	fi
-	exit 0
 }
 
 
 FOLDER_CREATOR(){
+	if [[ "$1" = "" || -d "$1" || "$1" = "--help" || "$1" = "-h" ]]
+	then
+		HELPER $1
+		return 1
+	fi
 	SAMPLE_PROJECT=~/.snakep
 	SOURCE_COMMONDS=~/.snakep_commonds
-	mkdir $1
-	# install all files or folders
-	cp -r $SAMPLE_PROJECT/* $1
-	# install all hiden files or folders
-	cp $SAMPLE_PROJECT/.[a-zA-Z0-9]* $1 && cp -r $SAMPLE_PROJECT/.[a-zA-Z0-9]* $1
-	cd $1
-	bash $SOURCE_COMMONDS
-	exit 0
+	if mkdir $1;
+	then
+		# install all files or folders
+		cp -r $SAMPLE_PROJECT/* $1
+		# install all hiden files or folders
+		cp $SAMPLE_PROJECT/.[a-zA-Z0-9]* $1 && cp -r $SAMPLE_PROJECT/.[a-zA-Z0-9]* $1
+		cd $1
+		exec $SOURCE_COMMONDS
+	else
+		return 1
+	fi
 }
 
-$FOLDER_CREATOR
-$HELPER
+case "${1}" in
+	"-h" | "--h" | "" ) HELPER $1 ;;
+	*				  ) FOLDER_CREATOR $1 ;;
+esac
