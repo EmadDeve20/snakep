@@ -1,6 +1,8 @@
 #!/bin/bash
 
 sample_folder_creator(){
+	# creat sample python repository
+	# and license repository
 	if [ -s ~/.snakep ]
 	then
 		rm -rf ~/.snakep
@@ -12,9 +14,16 @@ sample_folder_creator(){
 	mv ~/.snakep/src/__init__.py.sample ~/.snakep/src/__init__.py
 	mv ~/.snakep/test/__init__.py.sample ~/.snakep/test/__init__.py
 	mv ~/.snakep/setup.py.sample ~/.snakep/setup.py
+	
+	if [ -s ~/.licenses ]
+	then
+		rm -rf ~/.licenses
+	fi
+	cp -r ./.licenses ~
 }
 
 commonds_creator(){
+	# creat commands for your python project
 	if [ -s ~/.snakep_commonds ]
 	then
 		rm -rf ~/.snakep_commonds
@@ -27,9 +36,9 @@ snakep_commond_bash(){
 	then
 		sudo rm /usr/bin/snakep
 	fi
-	sudo cp snakep /usr/bin
+	sudo cp ./snakep /usr/bin
 }
 
-$sanple_folder_creator
-$snakep_commonds
-$snakep_commond_bash
+sample_folder_creator
+commonds_creator
+snakep_commond_bash
