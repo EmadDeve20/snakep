@@ -19,7 +19,11 @@ sample_folder_creator(){
 	then
 		rm -rf ~/.licenses
 	fi
-	cp -r ./.licenses ~
+}
+
+licenses_repository_creator(){
+	cp -r licenses ~
+	mv ~/licenses ~/.licenses
 }
 
 commonds_creator(){
@@ -40,5 +44,6 @@ snakep_commond_bash(){
 }
 
 sample_folder_creator
+licenses_repository_creator
 commonds_creator
 snakep_commond_bash

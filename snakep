@@ -10,6 +10,55 @@ HELPER(){
 	fi
 }
 
+LICENSES_CREATOR(){
+	licenses=()
+
+	count=1
+	echo "0 - Nothing"
+	for  license in `ls ~/.licenses`
+	do
+		licenses+=("$license")
+		echo "$count - $license" | tr "_" " "
+		let count+=1
+	done
+	echo "$((count+1)) - Empty License"
+
+
+
+	try_again=0
+	while [ $try_again -lt 2 ] 
+	do
+		read -p "Enter Your Number Of Choice: " choice
+
+		if ! [[ $choice =~ "[0-9]+" ]];
+		then
+			if [[ $choice -lt $count && $choice -gt 0 ]]
+			then
+				cp ~/.licenses/${licenses[$choice-1]} ./LICENSE
+				break
+
+			elif [ $choice="((choice+1))" ]
+			then
+				touch LICENSE
+				break
+
+			elif [ $choice="0" ]
+			then
+				break
+
+			else
+				echo "$choice: Out Of Range!"
+			fi
+		fi
+
+		if ! [[ $choice =~ "[a-zA-Z]+" ]];
+		then
+			echo "just number!"
+		fi
+
+		((try_again=try_again+1))
+	done
+}
 
 FOLDER_CREATOR(){
 	if [[ "$1" = "" || -d "$1" || "$1" = "--help" || "$1" = "-h" ]]
@@ -26,6 +75,7 @@ FOLDER_CREATOR(){
 		# install all hiden files or folders
 		cp $SAMPLE_PROJECT/.[a-zA-Z0-9]* $1 && cp -r $SAMPLE_PROJECT/.[a-zA-Z0-9]* $1
 		cd $1
+		LICENSES_CREATOR $1
 		exec $SOURCE_COMMONDS
 	else
 		return 1
