@@ -45,8 +45,8 @@ commonds_creator(){
 	# creat commands for your python project
 	if [ -s ~/.snakep_commonds ]
 	then
-		read -p ""~/.snakep_commonds" exist! can i remove it and i recreate it?[y/N]" answer
-		if [[ $answer = "\n" || $answer = "n" || $answer = "N" ]]
+		read -p ""~/.snakep_commonds" exist! can i remove it and i recreate it?[Y/n]" answer
+		if [[ $answer = "n" || $answer = "N" ]]
 		then
 			exit 0
 		else
