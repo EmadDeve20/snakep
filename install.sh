@@ -4,7 +4,7 @@ sample_folder_creator(){
 	# creat sample python repository
 	if [ -d ~/.snakep ]
 	then
-		read -p ""~/.snakep" exist! can i remove it and i recreate it?[Y/n]" answer
+		read -p ""~/.snakep" exist! can i remove it and i recreate it? [Y/n]" answer
 		if [[ $answer = "n" || $answer = "N" ]]
 		then
 			exit 0
@@ -28,7 +28,7 @@ licenses_repository_creator(){
 
 	if [ -d ~/.licenses ]
 	then
-		read -p ""~/.licenses" exist! can i remove it and i recreate it?[Y/n]" answer
+		read -p ""~/.licenses" exist! can i remove it and i recreate it? [Y/n]" answer
 		if [[ $answer = "n" || $answer = "N" ]]
 		then
 			exit 0
@@ -45,7 +45,7 @@ commonds_creator(){
 	# creat commands for your python project
 	if [ -s ~/.snakep_commonds ]
 	then
-		read -p ""~/.snakep_commonds" exist! can i remove it and i recreate it?[Y/n]" answer
+		read -p ""~/.snakep_commonds" exist! can i remove it and i recreate it? [Y/n]" answer
 		if [[ $answer = "n" || $answer = "N" ]]
 		then
 			exit 0
@@ -63,6 +63,7 @@ snakep(){
 		sudo rm /usr/bin/snakep
 	fi
 	sudo cp ./snakep /usr/bin
+	echo "install Successful! :)"
 }
 
 sample_folder_creator
