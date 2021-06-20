@@ -4,9 +4,11 @@
 HELPER(){
 	if [[ "$1" = "--help" || "$1" = "-h" || "$#" = "0" ]]
 	then
-		echo -e "\njust tell me your project name :D\n\nLIKE THIS: snakep test\n"	
+		echo -e "\njust tell me your project name :D\n\nLIKE THIS: snakep test\n"
+		exit 0
 	else
 		echo -e "The $1 Exist!:\n\n`ls $1`"
+		exit 1
 	fi
 }
 
@@ -64,7 +66,6 @@ FOLDER_CREATOR(){
 	if [[ "$1" = "" || -d "$1" || "$1" = "--help" || "$1" = "-h" ]]
 	then
 		HELPER $1
-		return 1
 	fi
 	SAMPLE_PROJECT=~/.snakep
 	SOURCE_COMMONDS=~/.snakep_commonds
